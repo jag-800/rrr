@@ -1,50 +1,41 @@
-.pagination {
-  display: flex;
-  justify-content: center;
-  padding-left: 0;
-  list-style: none;
-  border-radius: 0.25rem;
-}
-
-.page-item {
-  margin: 0 5px;
-}
-
-.page-link {
-  position: relative;
-  display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
-  color: #007bff;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-}
-
-.page-link:hover {
-  z-index: 2;
-  color: #0056b3;
-  text-decoration: none;
-  background-color: #e9ecef;
-  border-color: #dee2e6;
-}
-
-.page-link:focus {
-  z-index: 3;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-}
-
-
 body {
-  background-color: #f8f9fa;
-  color: #343a40;
+  padding-top: 70px; /* ヘッダーの高さに応じて調整 */
+  background-color: #f8f9fa; /* グレーの背景色 */
+}
+
+.navbar {
+  background-color: #343a40 !important; /* ダークグレーのナビバー */
+  margin-bottom: 20px;
+}
+
+.navbar-brand, .nav-link {
+  color: #fff !important; /* ナビバーのテキストを白に */
+}
+
+.navbar-toggler {
+  border-color: rgba(255,255,255,0.1); /* ハンバーガーメニューのボーダー色を調整 */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.nav-link:hover {
+  color: #ff6f61 !important; /* ホバー時に赤に */
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .jumbotron {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #ff6f61; /* 赤の背景色 */
   color: #ffffff;
   height: 100vh;
   display: flex;
@@ -71,16 +62,26 @@ body {
 }
 
 .jumbotron .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #ff6f61;
+  border-color: #ff6f61;
+}
+
+.jumbotron .btn-primary:hover {
+  background-color: #e65a50;
+  border-color: #e65a50;
 }
 
 .card {
   transition: transform 0.2s;
+  border: none;
 }
 
 .card:hover {
   transform: scale(1.05);
+}
+
+.card-body {
+  background-color: #f1f1f1; /* グレーの背景色 */
 }
 
 .card-img-top {
@@ -103,6 +104,39 @@ body {
   }
 }
 
-.navbar {
-  margin-bottom: 20px;
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #ff6f61;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+.page-link:hover {
+  z-index: 2;
+  color: #e65a50;
+  text-decoration: none;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.page-link:focus {
+  z-index: 3;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255,111,97,.25);
 }

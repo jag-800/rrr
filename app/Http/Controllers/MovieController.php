@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -12,7 +13,7 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::paginate(10);
+        $movies = Movie::paginate(9);
         return view('movies.index', compact('movies'));
     }
 
@@ -36,10 +37,16 @@ class MovieController extends Controller
             'release_date' => 'required|date',
         ]);
 
-        Movie::create($request->all());
+        $data = $request->all();
 
-        return redirect()->route('movies.index')
-                        ->with('success', 'Movie created successfully.');
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('public/images');
+            $data['image'] = basename($path);
+        }
+
+        Movie::create($data);
+
+        return redirect()->route('movies.index')->with('success', '映画が追加されました');
     }
 
     /**
@@ -64,16 +71,26 @@ class MovieController extends Controller
     public function update(Request $request, Movie $movie)
     {
         $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'title' => 'required',
             'description' => 'required',
             'director' => 'required',
             'release_date' => 'required|date',
         ]);
 
-        $movie->update($request->all());
+        $data = $request->all();
 
-        return redirect()->route('movies.index')
-                        ->with('success', 'Movie updated successfully.');
+        if ($request->hasFile('image')) {
+            if ($movie->image) {
+                Storage::delete('public/images/' . $movie->image);
+            }
+            $path = $request->file('image')->store('public/images');
+            $data['image'] = basename($path);
+        }
+
+        $movie->update($data);
+
+        return redirect()->route('movies.index')->with('success', '映画が更新されました');
     }
 
     /**
